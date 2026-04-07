@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>奔跑的兔子 | Research & Notes</title>
+  <meta name="description" content="AI for Science · Topology Optimization · Computational Mechanics · Notes by CrazyRunningRabbit" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: rgba(255,255,255,0.06);
+      --card: rgba(17, 24, 39, 0.68);
+      --line: rgba(255,255,255,0.12);
+      --text: #f5f7ff;
+      --muted: #aab4d6;
+      --accent: #6ee7ff;
+      --accent-2: #8b5cf6;
+      --accent-3: #22c55e;
+      --glow: 0 0 30px rgba(110,231,255,0.25);
+      --radius: 24px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(110,231,255,0.16), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(139,92,246,0.18), transparent 30%),
+        radial-gradient(circle at 60% 80%, rgba(34,197,94,0.12), transparent 24%),
+        linear-gradient(160deg, #030712 0%, #0b1023 40%, #050816 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+      opacity: 0.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 8, 22, 0.52);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-badge {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 16px rgba(110,231,255,0.7);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a, .btn {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover, .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(110,231,255,0.5);
+      box-shadow: var(--glow);
+    }
+
+    .hero {
+      position: relative;
+      padding: 88px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 14px;
+    }
+
+    .title {
+      font-size: clamp(42px, 8vw, 88px);
+      line-height: 0.95;
+      margin: 0 0 18px;
+      letter-spacing: -2.4px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #ffffff 0%, #9eeeff 32%, #b5a4ff 66%, #86efac 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 20px rgba(110,231,255,0.18));
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.8;
+      max-width: 720px;
+      margin: 0 0 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(110,231,255,0.18), rgba(139,92,246,0.18));
+      border-color: rgba(110,231,255,0.38);
+      box-shadow: var(--glow);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat, .card, .feature, .post, .timeline-item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      border-radius: var(--radius);
+    }
+
+    .stat {
+      padding: 20px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .visual {
+      position: relative;
+      min-height: 520px;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: 0.9;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb.one {
+      width: 300px; height: 300px;
+      top: 30px; left: 40px;
+      background: radial-gradient(circle, rgba(110,231,255,0.8), rgba(110,231,255,0.02) 70%);
+    }
+
+    .orb.two {
+      width: 280px; height: 280px;
+      right: 10px; top: 140px;
+      background: radial-gradient(circle, rgba(139,92,246,0.75), rgba(139,92,246,0.02) 72%);
+      animation-delay: -2s;
+    }
+
+    .orb.three {
+      width: 220px; height: 220px;
+      left: 130px; bottom: 30px;
+      background: radial-gradient(circle, rgba(34,197,94,0.7), rgba(34,197,94,0.02) 72%);
+      animation-delay: -4s;
+    }
+
+    .glass-panel {
+      position: absolute;
+      inset: 70px 20px 30px 20px;
+      padding: 22px;
+      overflow: hidden;
+    }
+
+    .code-line {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.82), rgba(255,255,255,0.08));
+      margin: 12px 0;
+      opacity: 0.88;
+    }
+
+    .code-line:nth-child(1) { width: 38%; }
+    .code-line:nth-child(2) { width: 74%; }
+    .code-line:nth-child(3) { width: 61%; }
+    .code-line:nth-child(4) { width: 83%; }
+    .code-line:nth-child(5) { width: 58%; }
+    .code-line:nth-child(6) { width: 69%; }
+    .code-line:nth-child(7) { width: 46%; }
+
+    .floating-tag {
+      position: absolute;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      backdrop-filter: blur(14px);
+      font-size: 14px;
+      color: #e5ecff;
+      box-shadow: var(--glow);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .tag-1 { top: 50px; right: 28px; }
+    .tag-2 { top: 210px; left: 0; animation-delay: -2s; }
+    .tag-3 { bottom: 40px; right: 60px; animation-delay: -4s; }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      margin: 0;
+      letter-spacing: -1px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.8;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 22px;
+      min-height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature::after {
+      content: "";
+      position: absolute;
+      inset: auto -30px -30px auto;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(110,231,255,0.2), transparent 70%);
+    }
+
+    .feature .num {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 16px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .feature h3 { margin: 0 0 10px; font-size: 22px; }
+    .feature p { margin: 0; color: var(--muted); line-height: 1.8; }
+
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .post {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: 0.25s ease;
+    }
+
+    .post:hover { transform: translateY(-4px); box-shadow: var(--glow); }
+
+    .pill {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      color: #d8e3ff;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .post h3 { margin: 0; font-size: 22px; }
+    .post p { margin: 0; color: var(--muted); line-height: 1.75; }
+    .post a.more { color: var(--accent); font-weight: 600; }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      padding: 20px 22px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .timeline-item .date {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .timeline-item h4 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .footer {
+      padding: 40px 0 80px;
+      color: var(--muted);
+    }
+
+    .footer-box {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-12px) translateX(6px); }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .features, .post-grid { grid-template-columns: 1fr; }
+      .visual { min-height: 420px; }
+      .stats { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .nav-inner, .section-head, .footer-box { flex-direction: column; align-items: flex-start; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .hero { padding-top: 52px; }
+      .title { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="brand-badge"></span>
+        <span>奔跑的兔子 · Research Blog</span>
+      </div>
+      <div class="nav-links">
+        <a href="#work">研究方向</a>
+        <a href="#posts">随笔精选</a>
+        <a href="#roadmap">路线图</a>
+        <a href="https://github.com/CrazyRunningRabbit" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">⚡ AI for Science · Computational Mechanics · Topology Optimization</div>
+        <h1 class="title">
+          把复杂科研
+          <span class="gradient">做成能被看见的美</span>
+        </h1>
+        <p class="subtitle">
+          这里记录计算力学、FEM、拓扑优化、强化学习、参数化结构设计，以及把抽象公式和代码推到真正可运行模型的全过程。
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#posts">进入博客</a>
+          <a class="btn" href="#work">看研究主题</a>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <strong>01</strong>
+            <span>从数学推导到代码复现</span>
+          </div>
+          <div class="stat">
+            <strong>02</strong>
+            <span>从结构设计到可视化表达</span>
+          </div>
+          <div class="stat">
+            <strong>03</strong>
+            <span>从实验想法到长期知识库</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="orb one"></div>
+        <div class="orb two"></div>
+        <div class="orb three"></div>
+        <div class="glass-panel card">
+          <div class="pill">Live Research Canvas</div>
+          <div style="height:18px"></div>
+          <div class="code-line"></div>
+          <div class="code-line"></div>
+          <div class="code-line"></div>
+          <div class="code-line"></div>
+          <div class="code-line"></div>
+          <div class="code-line"></div>
+          <div class="code-line"></div>
+          <div style="height:26px"></div>
+          <div class="post" style="padding:18px; background: rgba(255,255,255,0.05);">
+            <span class="pill">Featured</span>
+            <h3>Hyperelastic FEM + TopOpt</h3>
+            <p>记录从小变形线弹性模型走向超弹性大变形、多物理场与参数化设计的完整路径。</p>
+          </div>
+        </div>
+        <div class="floating-tag tag-1">FEniCS / Firedrake</div>
+        <div class="floating-tag tag-2">RL × Design</div>
+        <div class="floating-tag tag-3">Math → Code → Result</div>
+      </div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>研究方向</h2>
+          <p>主页先不做成普通自我介绍，而是直接做成一个有冲击力的科研入口。别人一打开，就知道这里不是流水账，而是有主题、有方法、有技术深度的长期工程。</p>
+        </div>
+      </div>
+
+      <div class="features">
+        <article class="feature">
+          <div class="num">01</div>
+          <h3>计算力学</h3>
+          <p>FEM、混合有限元、超弹性、本构建模、数值稳定性、求解器调参与误差分析。</p>
+        </article>
+        <article class="feature">
+          <div class="num">02</div>
+          <h3>拓扑优化</h3>
+          <p>SIMP / RAMP、约束设计、制造可行性、Level Set、顺序优化与多物理场耦合。</p>
+        </article>
+        <article class="feature">
+          <div class="num">03</div>
+          <h3>AI for Science</h3>
+          <p>强化学习、生成式设计、VAE、参数化设计搜索，以及用机器学习辅助结构创新。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="posts">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>随笔精选</h2>
+          <p>这里先放三张高质感卡片。后续只要把每一篇文章链接改成真实博文地址，就能直接投入使用。</p>
+        </div>
+      </div>
+
+      <div class="post-grid">
+        <article class="post">
+          <span class="pill">Topology Optimization</span>
+          <h3>从 RAMP 到可制造结构</h3>
+          <p>把材料插值、体积分数、灵敏度、正则化和工程约束串成一条能真正落地的优化链路。</p>
+          <a class="more" href="#">阅读文章 →</a>
+        </article>
+
+        <article class="post">
+          <span class="pill">FEM Notes</span>
+          <h3>如何理解 Jacobian、UFL 与弱形式</h3>
+          <p>用尽量直观的方式，把推导、离散、装配和求解器之间的关系讲清楚。</p>
+          <a class="more" href="#">阅读文章 →</a>
+        </article>
+
+        <article class="post">
+          <span class="pill">AI for Science</span>
+          <h3>强化学习如何介入结构设计</h3>
+          <p>从状态、动作、奖励设计开始，逐步把智能体接进参数化结构与仿真循环。</p>
+          <a class="more" href="#">阅读文章 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>路线图</h2>
+          <p>这个区域很适合以后持续更新，让主页看起来像一个正在推进中的研究宇宙，而不是静态名片。</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date">Step 01</div>
+          <div>
+            <h4>博客与知识库基础设施</h4>
+            <p>完成 GitHub Pages 部署，整理文章分类，建立可持续发布的 Markdown 写作流程。</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">Step 02</div>
+          <div>
+            <h4>科研专题深挖</h4>
+            <p>围绕超弹性 FEM、拓扑优化、生成式设计逐步沉淀成系列文章与项目页面。</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">Step 03</div>
+          <div>
+            <h4>独立域名与多内容承载</h4>
+            <p>绑定个人域名后，不只放博客，还可以扩展项目展示、个人简介、论文清单、软件下载页等内容。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-box card">
+      <div>
+        <strong style="display:block; font-size:20px; margin-bottom:8px; color:#fff;">奔跑的兔子</strong>
+        <span>记录复杂问题，拆开它，理解它，再把它做出来。</span>
+      </div>
+      <div class="nav-links">
+        <a href="mailto:your-email@example.com">Email</a>
+        <a href="https://github.com/CrazyRunningRabbit" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
