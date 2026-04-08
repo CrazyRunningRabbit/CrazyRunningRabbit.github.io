@@ -15,344 +15,99 @@
       --border-thick: 6px solid #FFFF00;
       --border-thin: 3px solid #FFFF00;
     }
-
-    * { 
-      box-sizing: border-box; 
-      font-family: "黑体", SimHei, "Arial Black", sans-serif;
-    }
-    
+    * { box-sizing: border-box; font-family: "黑体", SimHei, "Arial Black", sans-serif; }
     html { scroll-behavior: smooth; }
-    
-    body {
-      margin: 0;
-      background-color: var(--bg);
-      color: var(--yellow);
-      font-weight: 900;
-      line-height: 1.5;
-    }
-
-    a { 
-      color: var(--yellow); 
-      text-decoration: none; 
-    }
-
-    .container {
-      width: min(1200px, calc(100% - 20px));
-      margin: 0 auto;
-    }
-
-    /* 顶部导航 */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: var(--bg);
-      border-bottom: var(--border-thick);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 10px 0;
-    }
-
-    .brand {
-      font-size: 24px;
-      background: var(--red);
-      padding: 5px 15px;
-      border: var(--border-thin);
-      color: var(--yellow);
-      letter-spacing: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a, .btn {
-      background: var(--red);
-      color: var(--yellow);
-      border: var(--border-thin);
-      padding: 10px 20px;
-      font-size: 18px;
-      text-transform: uppercase;
-    }
-
-    .nav-links a:hover, .btn:hover {
-      background: var(--yellow);
-      color: var(--red);
-      border-color: var(--red);
-    }
-
-    /* 头部区域 */
-    .hero {
-      padding: 60px 0;
-      border-bottom: var(--border-thick);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      background: var(--blue);
-      color: var(--white);
-      padding: 10px 20px;
-      border: var(--border-thin);
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .title {
-      font-size: clamp(50px, 8vw, 100px);
-      line-height: 1;
-      margin: 0 0 20px;
-      color: var(--yellow);
-      text-shadow: 4px 4px 0 var(--red);
-    }
-
-    .gradient {
-      background: var(--red);
-      color: var(--yellow);
-      padding: 0 10px;
-      border: var(--border-thick);
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    .subtitle {
-      font-size: 24px;
-      background: var(--bg);
-      color: var(--yellow);
-      padding: 15px;
-      border: var(--border-thin);
-      margin: 0 0 30px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    .btn.primary {
-      background: var(--yellow);
-      color: var(--red);
-      border: 4px solid var(--red);
-      font-size: 24px;
-      padding: 15px 30px;
-    }
-
-    /* 数据统计 */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .stat, .feature, .post, .timeline-item {
-      background: var(--bg);
-      border: var(--border-thick);
-      padding: 20px;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 40px;
-      color: var(--red);
-      background: var(--yellow);
-      text-align: center;
-      margin-bottom: 10px;
-      border: var(--border-thin);
-    }
-
-    .stat span {
-      display: block;
-      font-size: 18px;
-      background: var(--red);
-      color: var(--yellow);
-      padding: 5px;
-      text-align: center;
-    }
-
-    /* 视觉元素区 */
-    .visual {
-      background: var(--blue);
-      border: var(--border-thick);
-      padding: 20px;
-      position: relative;
-      min-height: 400px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .pill {
-      background: var(--yellow);
-      color: var(--red);
-      padding: 10px 20px;
-      border: 4px solid var(--red);
-      font-size: 24px;
-      margin-bottom: 15px;
-      display: inline-block;
-    }
-
-    .floating-tag {
-      background: var(--red);
-      color: var(--yellow);
-      border: var(--border-thin);
-      padding: 10px 15px;
-      font-size: 20px;
-      margin: 10px;
-      display: inline-block;
-    }
-
-    /* 通用区块 */
-    section {
-      padding: 50px 0;
-      border-bottom: var(--border-thick);
-    }
-
-    .section-head h2 {
-      font-size: 50px;
-      background: var(--red);
-      color: var(--yellow);
-      display: inline-block;
-      padding: 10px 20px;
-      border: var(--border-thick);
-      margin: 0 0 20px;
-    }
-
-    .section-head p {
-      font-size: 20px;
-      border: var(--border-thin);
-      padding: 15px;
-      margin-bottom: 30px;
-    }
-
-    /* 特性区块 */
-    .features, .post-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .feature .num {
-      display: inline-block;
-      font-size: 30px;
-      background: var(--yellow);
-      color: var(--red);
-      padding: 5px 15px;
-      border: var(--border-thin);
-      margin-bottom: 15px;
-    }
-
-    .feature h3, .post h3 {
-      font-size: 28px;
-      background: var(--red);
-      color: var(--yellow);
-      padding: 10px;
-      margin: 0 0 15px;
-      border: var(--border-thin);
-    }
-
-    .feature p, .post p, .timeline-item p {
-      font-size: 18px;
-    }
-
-    /* 博客区块 */
+    body { margin: 0; background-color: var(--bg); color: var(--yellow); font-weight: 900; line-height: 1.5; }
+    a { color: var(--yellow); text-decoration: none; }
+    .container { width: min(1200px, calc(100% - 20px)); margin: 0 auto; }
+    .nav { position: sticky; top: 0; z-index: 20; background: var(--bg); border-bottom: var(--border-thick); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0; }
+    .brand { font-size: 24px; background: var(--red); padding: 5px 15px; border: var(--border-thin); color: var(--yellow); letter-spacing: 2px; }
+    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav-links a, .btn { background: var(--red); color: var(--yellow); border: var(--border-thin); padding: 10px 20px; font-size: 18px; text-transform: uppercase; }
+    .nav-links a:hover, .btn:hover { background: var(--yellow); color: var(--red); border-color: var(--red); }
+    .hero { padding: 60px 0; border-bottom: var(--border-thick); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+    .eyebrow { display: inline-block; background: var(--blue); color: var(--white); padding: 10px 20px; border: var(--border-thin); font-size: 20px; margin-bottom: 20px; }
+    .title { font-size: clamp(50px, 8vw, 100px); line-height: 1; margin: 0 0 20px; color: var(--yellow); text-shadow: 4px 4px 0 var(--red); }
+    .gradient { background: var(--red); color: var(--yellow); padding: 0 10px; border: var(--border-thick); display: inline-block; margin-top: 10px; }
+    .subtitle { font-size: 24px; background: var(--bg); color: var(--yellow); padding: 15px; border: var(--border-thin); margin: 0 0 30px; }
+    .actions { display: flex; gap: 20px; margin-bottom: 30px; }
+    .btn.primary { background: var(--yellow); color: var(--red); border: 4px solid var(--red); font-size: 24px; padding: 15px 30px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat, .feature, .post, .timeline-item { background: var(--bg); border: var(--border-thick); padding: 20px; }
+    .stat strong { display: block; font-size: 40px; color: var(--red); background: var(--yellow); text-align: center; margin-bottom: 10px; border: var(--border-thin); }
+    .stat span { display: block; font-size: 18px; background: var(--red); color: var(--yellow); padding: 5px; text-align: center; }
+    .visual { background: var(--blue); border: var(--border-thick); padding: 20px; position: relative; min-height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .profile-photo-wrap { display: flex; justify-content: center; margin-bottom: 16px; }
+    .profile-photo { width: 120px; height: 120px; object-fit: cover; border: 5px solid var(--yellow); image-rendering: pixelated; box-shadow: 6px 6px 0 var(--red); }
+    .pill { background: var(--yellow); color: var(--red); padding: 10px 20px; border: 4px solid var(--red); font-size: 24px; margin-bottom: 15px; display: inline-block; }
+    section { padding: 50px 0; border-bottom: var(--border-thick); }
+    .section-head h2 { font-size: 50px; background: var(--red); color: var(--yellow); display: inline-block; padding: 10px 20px; border: var(--border-thick); margin: 0 0 20px; }
+    .section-head p { font-size: 20px; border: var(--border-thin); padding: 15px; margin-bottom: 30px; }
+    .features, .post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .feature .num { display: inline-block; font-size: 30px; background: var(--yellow); color: var(--red); padding: 5px 15px; border: var(--border-thin); margin-bottom: 15px; }
+    .feature h3, .post h3 { font-size: 28px; background: var(--red); color: var(--yellow); padding: 10px; margin: 0 0 15px; border: var(--border-thin); }
+    .feature p, .post p, .timeline-item p { font-size: 18px; }
     .post { display: flex; flex-direction: column; }
-    
-    .post .pill {
-      font-size: 16px;
-      padding: 5px 10px;
-      margin-bottom: 10px;
-    }
-
-    .post a.more {
-      margin-top: auto;
-      background: var(--blue);
-      color: var(--white);
-      padding: 10px;
-      text-align: center;
-      border: var(--border-thin);
-      font-size: 20px;
-      display: block;
-    }
-
-    /* 路线图 */
+    .post .pill { font-size: 16px; padding: 5px 10px; margin-bottom: 10px; }
+    .post a.more { margin-top: auto; background: var(--blue); color: var(--white); padding: 10px; text-align: center; border: var(--border-thin); font-size: 20px; display: block; }
     .timeline { display: grid; gap: 20px; }
-    
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .timeline-item .date {
-      font-size: 30px;
-      background: var(--yellow);
-      color: var(--red);
-      padding: 10px;
-      text-align: center;
-      border: 4px solid var(--red);
-    }
-
-    .timeline-item h4 {
-      font-size: 26px;
-      background: var(--red);
-      color: var(--yellow);
-      padding: 5px 15px;
-      display: inline-block;
-      margin: 0 0 10px;
-    }
-
-    /* 底部 */
-    .footer {
-      padding: 40px 0;
-      background: var(--red);
-    }
-
-    .footer-box {
-      background: var(--bg);
-      border: var(--border-thick);
-      padding: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-box strong {
-      font-size: 30px;
-      background: var(--yellow);
-      color: var(--red);
-      padding: 5px 15px;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-
-    /* 响应式 */
+    .timeline-item { display: grid; grid-template-columns: 150px 1fr; gap: 20px; align-items: center; }
+    .timeline-item .date { font-size: 30px; background: var(--yellow); color: var(--red); padding: 10px; text-align: center; border: 4px solid var(--red); }
+    .timeline-item h4 { font-size: 26px; background: var(--red); color: var(--yellow); padding: 5px 15px; display: inline-block; margin: 0 0 10px; }
+    .footer { padding: 40px 0; background: var(--red); }
+    .footer-box { background: var(--bg); border: var(--border-thick); padding: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-box strong { font-size: 30px; background: var(--yellow); color: var(--red); padding: 5px 15px; display: inline-block; margin-bottom: 10px; }
     @media (max-width: 980px) {
       .hero-grid, .features, .post-grid { grid-template-columns: 1fr; }
       .timeline-item { grid-template-columns: 1fr; text-align: center; }
       .timeline-item .date { margin-bottom: 10px; }
     }
+
+    /* ===== 像素兔子 ===== */
+    #pixel-rabbit {
+      position: fixed;
+      width: 96px;
+      height: 96px;
+      z-index: 9999;
+      cursor: pointer;
+      pointer-events: all;
+      filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.45));
+      transform-origin: center bottom;
+    }
+    #rabbit-canvas {
+      display: block;
+      width: 96px;
+      height: 96px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    @keyframes rabbitPop {
+      0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+      35%  { transform: scale(1.7) rotate(-20deg); opacity: 0.9; }
+      100% { transform: scale(0) rotate(40deg); opacity: 0; }
+    }
+    .rabbit-pop { animation: rabbitPop 0.42s cubic-bezier(.36,.07,.19,.97) forwards !important; }
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      font-family: sans-serif;
+      font-weight: bold;
+      animation: sparkleUp 1s ease-out forwards;
+    }
+    @keyframes sparkleUp {
+      0%   { transform: translateY(0) scale(1.3) rotate(-10deg); opacity: 1; }
+      70%  { opacity: 1; }
+      100% { transform: translateY(-80px) scale(0.3) rotate(25deg); opacity: 0; }
+    }
   </style>
 </head>
 <body>
+
+  <div id="pixel-rabbit"><canvas id="rabbit-canvas" width="32" height="32"></canvas></div>
+
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">我从小喝到大 · 纯正南洋好味道</div>
@@ -369,40 +124,26 @@
     <div class="container hero-grid">
       <div>
         <div class="eyebrow">正宗 AI for Science！</div>
-        <h1 class="title">
-          敢承诺<br/>
-          <span class="gradient">不加香精的科研</span>
-        </h1>
+        <h1 class="title">敢承诺<br/><span class="gradient">不加香精的科研</span></h1>
         <p class="subtitle">人不访问我，我不访问人，人若访问我，我必给您带来快乐或精神污染。</p>
         <div class="actions">
           <a class="btn primary" href="#posts">进入博客</a>
           <a class="btn" href="#work">看研究主题</a>
         </div>
         <div class="stats">
-          <div class="stat">
-            <strong>01</strong>
-            <span>推导到代码</span>
-          </div>
-          <div class="stat">
-            <strong>02</strong>
-            <span>结构到可视化</span>
-          </div>
-          <div class="stat">
-            <strong>03</strong>
-            <span>想法到知识库</span>
-          </div>
+          <div class="stat"><strong>01</strong><span>推导到代码</span></div>
+          <div class="stat"><strong>02</strong><span>结构到可视化</span></div>
+          <div class="stat"><strong>03</strong><span>想法到知识库</span></div>
         </div>
       </div>
-
       <div class="visual">
-        <!-- <div class="pill">正宗 LIVE RESEARCH CANVAS</div>
-        <div class="floating-tag">FEniCS(X)/ Firedrake</div>
-        <div class="floating-tag">RL & Design</div>
-        <div class="floating-tag">Want $$$$$$$$$$$</div> -->
         <div class="section-head">
-        <h2>自我介绍</h2>
-        <p>大家好，我叫王敏达，新加坡南洋理工大学博士二年级，主要研究方向为柔性机器人拓扑优化。我擅长Fenics，FenicsX和Firedrake平台的各种求解和优化。我很喜欢打羽毛球，因为在打羽毛球的时候我的手高于我的眼睛，避免了眼高手低的问题。我有很强的ai背景，不会的东西都会问ai。</p>
-      </div>
+          <h2>自我介绍</h2>
+          <div class="profile-photo-wrap">
+            <img class="profile-photo" src="me.jpg" alt="王敏达 证件照" onerror="this.style.display='none'" />
+          </div>
+          <p>大家好，我叫王敏达，新加坡南洋理工大学博士二年级，主要研究方向为柔性机器人拓扑优化。我擅长Fenics，FenicsX和Firedrake平台的各种求解和优化。我很喜欢打羽毛球，因为在打羽毛球的时候我的手高于我的眼睛，避免了眼高手低的问题。我有很强的ai背景，不会的东西都会问ai。</p>
+        </div>
         <div class="post" style="margin-top: 20px; text-align: left; width: 100%;">
           <span class="pill" style="font-size:16px;">强烈推荐 FEATURED</span>
           <h3>多尺度设计 我从小算到大</h3>
@@ -414,24 +155,10 @@
 
   <section id="work">
     <div class="container">
-      
-
       <div class="features">
-        <article class="feature">
-          <div class="num">01</div>
-          <h3>计算力学</h3>
-          <p>大到扇耳光的轰鸣，小到火星撞地球的轻微声响，我们都可以按需模拟出您的受力</p>
-        </article>
-        <article class="feature">
-          <div class="num">02</div>
-          <h3>优化</h3>
-          <p>这个世界上有多少可能出现的结构，一起爬山吧，蒙着眼睛算梯度那种。</p>
-        </article>
-        <article class="feature">
-          <div class="num">03</div>
-          <h3>AI FOR SCIENCE</h3>
-          <p>听说现在沾上了ai，以后卖薯条都可以被赋能</p>
-        </article>
+        <article class="feature"><div class="num">01</div><h3>计算力学</h3><p>大到扇耳光的轰鸣，小到火星撞地球的轻微声响，我们都可以按需模拟出您的受力</p></article>
+        <article class="feature"><div class="num">02</div><h3>优化</h3><p>这个世界上有多少可能出现的结构，一起爬山吧，蒙着眼睛算梯度那种。</p></article>
+        <article class="feature"><div class="num">03</div><h3>AI FOR SCIENCE</h3><p>听说现在沾上了ai，以后卖薯条都可以被赋能</p></article>
       </div>
     </div>
   </section>
@@ -442,63 +169,33 @@
         <h2>随笔精选</h2>
         <p>这里应该有东西但为什么没有呢？？因为他善。想看扣1，扣到合适数量我就开始更新。</p>
       </div>
-
       <div class="post-grid">
         <article class="post">
-          <span class="pill">TOPOLOGY OPTIMIZATION</span>
-          <h3>我画的饼1</h3>
+          <span class="pill">TOPOLOGY OPTIMIZATION</span><h3>我画的饼1</h3>
           <p>这里边有个超级妙的关于schur补的比喻，必看经典</p>
           <a class="more" href="research/schur_complement.md">猛击此处开启成功人生</a>
         </article>
-
         <article class="post">
-          <span class="pill">FEM NOTES</span>
-          <h3>我画的饼2</h3>
+          <span class="pill">FEM NOTES</span><h3>我画的饼2</h3>
           <p>没时间写啊诸位</p>
           <a class="more" href="#">猛击此处加功德</a>
         </article>
-
         <article class="post">
-          <span class="pill">AI FOR SCIENCE</span>
-          <h3>别人给我画的饼3</h3>
+          <span class="pill">AI FOR SCIENCE</span><h3>别人给我画的饼3</h3>
           <p>我希望下周的升旗仪式我能去讲</p>
           <a class="more" href="#">猛击此处敲醒我，我会同步收到提醒哦</a>
         </article>
-
-
       </div>
     </div>
   </section>
 
   <section id="roadmap">
     <div class="container">
-      <div class="section-head">
-        <h2>路线图</h2>
-        <p>科研路线图，广告位招租</p>
-      </div>
-
+      <div class="section-head"><h2>路线图</h2><p>科研路线图，广告位招租</p></div>
       <div class="timeline">
-        <div class="timeline-item">
-          <div class="date">第一步</div>
-          <div>
-            <h4></h4>
-            <p>手上一堆markdown，到时候发一部分</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="date">第二步</div>
-          <div>
-            <h4>科研专题深挖</h4>
-            <p>等我把手上的三个工作做完我就整理</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="date">第三步</div>
-          <div>
-            <h4>独立域名与多内容承载</h4>
-            <p>这个域名好丑，我要买一个好一点的域名</p>
-          </div>
-        </div>
+        <div class="timeline-item"><div class="date">第一步</div><div><h4></h4><p>手上一堆markdown，到时候发一部分</p></div></div>
+        <div class="timeline-item"><div class="date">第二步</div><div><h4>科研专题深挖</h4><p>等我把手上的三个工作做完我就整理</p></div></div>
+        <div class="timeline-item"><div class="date">第三步</div><div><h4>独立域名与多内容承载</h4><p>这个域名好丑，我要买一个好一点的域名</p></div></div>
       </div>
     </div>
   </section>
@@ -506,15 +203,282 @@
   <footer class="footer">
     <div class="container footer-box">
       <div>
-        <strong>奔跑的兔子</strong>
-        <br/>
+        <strong>奔跑的兔子</strong><br/>
         <span style="font-size:20px; background:var(--red); padding:5px;">我爱这个世界，钦此。</span>
       </div>
       <div class="nav-links">
-        <a href="mailto:your-email@example.com">发邮件给我 minda002 at e.ntu.edu.sg</a>
+        <a href="mailto:minda002@e.ntu.edu.sg">发邮件给我 minda002 at e.ntu.edu.sg</a>
         <a href="https://github.com/CrazyRunningRabbit" target="_blank" rel="noreferrer">看GITHUB</a>
       </div>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    /* ============================================================
+       32×32 kawaii 像素兔子 — 三帧动画
+       颜色表:
+         _  透明          K  深蓝黑(轮廓)
+         W  奶白(身体)    E  极淡粉(耳外)
+         P  粉(耳内/腮红) D  玫瑰粉(鼻)
+         B  深蓝(眼珠)    L  亮蓝白(眼高光)
+    ============================================================ */
+    const _ = 0x00000000;
+    const K = 0x1A1A2EFF;
+    const W = 0xFFF9F0FF;
+    const E = 0xFFE8F0FF;
+    const P = 0xFFAEC9FF;
+    const D = 0xE8638CFF;
+    const B = 0x2B2D5EFF;
+    const L = 0xCCEEFFFF;
+
+    /* ── 帧0: 站立 ── */
+    const f0 = [
+      // r0  耳尖
+      _,_,_,_,_,_,_,_,K,K,_,_,_,_,_,_,_,_,_,_,_,_,K,K,_,_,_,_,_,_,_,_,
+      // r1
+      _,_,_,_,_,_,_,K,E,P,K,_,_,_,_,_,_,_,_,_,_,K,E,P,K,_,_,_,_,_,_,_,
+      // r2-r13  长耳主体 (12行)
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      // r14  耳根过渡
+      _,_,_,_,_,K,W,W,W,W,W,K,_,_,_,_,_,_,_,_,K,W,W,W,W,W,K,_,_,_,_,_,
+      // r15  头顶封口
+      _,_,_,_,K,W,W,W,W,W,W,W,K,K,K,K,K,K,K,K,W,W,W,W,W,W,W,K,_,_,_,_,
+      // r16  头圆上
+      _,_,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,_,
+      // r17  头全宽
+      _,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      // r18  头全宽
+      _,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      // r19-r20  眼上半 (L=高光左上2×2, B=眼珠)
+      _,_,K,W,W,W,W,L,L,B,B,W,W,W,W,W,W,W,W,W,W,L,L,B,B,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,L,L,B,B,W,W,W,W,W,W,W,W,W,W,L,L,B,B,W,W,W,W,K,_,_,
+      // r21-r22  眼下半 (全黑)
+      _,_,K,W,W,W,W,B,B,B,B,W,W,W,W,W,W,W,W,W,W,B,B,B,B,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,B,B,B,B,W,W,W,W,W,W,W,W,W,W,B,B,B,B,W,W,W,W,K,_,_,
+      // r23  腮红
+      _,_,K,W,P,P,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,P,P,W,W,K,_,_,
+      // r24  鼻孔 (双孔 D)
+      _,_,K,W,W,W,W,W,W,W,W,W,W,D,D,W,W,D,D,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      // r25  脸空行
+      _,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      // r26  嘴角 (ω上)
+      _,_,K,W,W,W,W,W,W,W,K,W,W,W,W,W,W,W,W,W,W,K,W,W,W,W,W,W,W,K,_,_,
+      // r27  嘴弧 (ω下)
+      _,_,K,W,W,W,W,W,W,W,W,K,W,W,K,W,W,K,W,W,K,W,W,W,W,W,W,W,W,K,_,_,
+      // r28  下巴收口
+      _,_,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,_,
+      // r29  身体
+      _,_,_,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,_,_,
+      // r30  腿
+      _,_,_,_,_,K,W,W,K,_,_,_,_,_,_,_,_,_,_,_,_,_,_,K,W,W,K,_,_,_,_,_,
+      // r31  脚
+      _,_,_,_,_,K,K,K,K,_,_,_,_,_,_,_,_,_,_,_,_,_,_,K,K,K,K,_,_,_,_,_,
+    ];
+
+    /* ── 帧1: 跳起 — 耳朵外张2px，腿收起 ── */
+    const f1 = [
+      // r0  耳尖外张
+      _,_,_,_,_,_,K,K,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,K,K,_,_,_,_,_,_,
+      // r1
+      _,_,_,_,_,K,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,P,P,K,_,_,_,_,_,
+      // r2-r13  长耳外张
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      _,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,
+      // r14  耳根
+      _,_,_,_,K,W,W,W,W,K,_,_,_,_,_,_,_,_,_,_,_,_,K,W,W,W,W,K,_,_,_,_,
+      // r15  头顶
+      _,_,_,_,K,W,W,W,W,W,K,K,K,K,K,K,K,K,K,K,K,K,W,W,W,W,W,K,_,_,_,_,
+      // r16-r29  头部 (与 f0 相同)
+      _,_,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,_,
+      _,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,L,L,B,B,W,W,W,W,W,W,W,W,W,W,L,L,B,B,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,L,L,B,B,W,W,W,W,W,W,W,W,W,W,L,L,B,B,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,B,B,B,B,W,W,W,W,W,W,W,W,W,W,B,B,B,B,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,B,B,B,B,W,W,W,W,W,W,W,W,W,W,B,B,B,B,W,W,W,W,K,_,_,
+      _,_,K,W,P,P,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,P,P,W,W,K,_,_,
+      _,_,K,W,W,W,W,W,W,W,W,W,W,D,D,W,W,D,D,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,W,W,W,K,W,W,W,W,W,W,W,W,W,W,K,W,W,W,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,W,W,W,W,K,W,W,K,W,W,K,W,W,K,W,W,W,W,W,W,W,W,K,_,_,
+      _,_,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,_,
+      _,_,_,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,_,_,
+      // r30  腿收起(小线段)
+      _,_,_,_,_,_,_,K,K,_,_,_,_,_,_,_,_,_,_,_,_,_,_,K,K,_,_,_,_,_,_,_,
+      // r31  脚缩起
+      _,_,_,_,_,_,_,_,K,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,K,_,_,_,_,_,_,_,
+    ];
+
+    /* ── 帧2: 落地挤扁 — UwU嘴，腿大幅外张 ── */
+    const f2 = [
+      // r0-r13  耳 (同f0)
+      _,_,_,_,_,_,_,_,K,K,_,_,_,_,_,_,_,_,_,_,_,_,K,K,_,_,_,_,_,_,_,_,
+      _,_,_,_,_,_,_,K,E,P,K,_,_,_,_,_,_,_,_,_,_,K,E,P,K,_,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      _,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,_,_,K,E,E,P,P,K,_,_,_,_,_,_,
+      // r14  耳根
+      _,_,_,_,_,K,W,W,W,W,W,K,_,_,_,_,_,_,_,_,K,W,W,W,W,W,K,_,_,_,_,_,
+      // r15  头顶
+      _,_,_,_,K,W,W,W,W,W,W,W,K,K,K,K,K,K,K,K,W,W,W,W,W,W,W,K,_,_,_,_,
+      // r16-r18  头部 (与f0同)
+      _,_,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,_,
+      _,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      // r19-r22  眼 (同f0)
+      _,_,K,W,W,W,W,L,L,B,B,W,W,W,W,W,W,W,W,W,W,L,L,B,B,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,L,L,B,B,W,W,W,W,W,W,W,W,W,W,L,L,B,B,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,B,B,B,B,W,W,W,W,W,W,W,W,W,W,B,B,B,B,W,W,W,W,K,_,_,
+      _,_,K,W,W,W,W,B,B,B,B,W,W,W,W,W,W,W,W,W,W,B,B,B,B,W,W,W,W,K,_,_,
+      // r23  腮红(更明显)
+      _,_,K,W,P,P,P,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,P,P,P,W,W,K,_,_,
+      // r24  鼻
+      _,_,K,W,W,W,W,W,W,W,W,W,W,D,D,W,W,D,D,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      // r25  脸空行
+      _,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,
+      // r26  UwU嘴角(更宽)
+      _,_,K,W,W,W,W,W,W,K,W,W,W,W,W,W,W,W,W,W,W,W,K,W,W,W,W,W,W,K,_,_,
+      // r27  UwU嘴弧内侧小突起
+      _,_,K,W,W,W,W,W,W,W,K,W,K,W,W,W,W,W,K,W,K,W,W,W,W,W,W,W,W,K,_,_,
+      // r28  下巴
+      _,_,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,_,
+      // r29  身体(稍扁)
+      _,_,_,_,K,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,K,_,_,_,_,
+      // r30  腿大幅外张(落地感)
+      _,_,_,K,W,W,W,K,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,K,W,W,W,K,_,_,_,
+      // r31  大脚踩地
+      _,_,_,K,K,K,K,K,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,K,K,K,K,K,_,_,_,
+    ];
+
+    /* ──────────────────────────────────────── */
+
+    const FRAMES = [f0, f1, f2, f1];
+    const DURS   = [300, 200, 160, 200];
+
+    function blit(ctx, pixels) {
+      const img = ctx.createImageData(32, 32);
+      for (let i = 0; i < 1024; i++) {
+        const v = pixels[i];
+        img.data[i*4]   = (v >>> 24) & 0xFF;
+        img.data[i*4+1] = (v >>> 16) & 0xFF;
+        img.data[i*4+2] = (v >>> 8)  & 0xFF;
+        img.data[i*4+3] =  v         & 0xFF;
+      }
+      ctx.clearRect(0, 0, 32, 32);
+      ctx.putImageData(img, 0, 0);
+    }
+
+    const rabbit = document.getElementById('pixel-rabbit');
+    const canvas = document.getElementById('rabbit-canvas');
+    const ctx    = canvas.getContext('2d');
+
+    let rx = 120 + Math.random() * (window.innerWidth  - 240);
+    let ry = 80  + Math.random() * (window.innerHeight - 160);
+    let vx = (1.6 + Math.random() * 1.6) * (Math.random() < .5 ? 1 : -1);
+    let vy = (0.8 + Math.random() * 1.0) * (Math.random() < .5 ? 1 : -1);
+
+    let fi = 0, elapsed = 0, phase = 0, last = performance.now(), raf;
+
+    blit(ctx, FRAMES[0]);
+
+    function tick(now) {
+      const dt = Math.min(now - last, 50);
+      last = now;
+
+      elapsed += dt;
+      if (elapsed >= DURS[fi]) {
+        elapsed -= DURS[fi];
+        fi = (fi + 1) % FRAMES.length;
+        blit(ctx, FRAMES[fi]);
+      }
+
+      rx += vx * dt * 0.055;
+      ry += vy * dt * 0.055;
+
+      phase += dt * 0.0045;
+      const bob = -Math.abs(Math.sin(phase)) * 16;
+
+      const maxX = window.innerWidth  - 100;
+      const maxY = window.innerHeight - 100;
+
+      if (rx < 2)    { rx = 2;    vx =  Math.abs(vx) * (1 + Math.random() * .15); }
+      if (rx > maxX) { rx = maxX; vx = -Math.abs(vx) * (1 + Math.random() * .15); }
+      if (ry < 2)    { ry = 2;    vy =  Math.abs(vy); }
+      if (ry > maxY) { ry = maxY; vy = -Math.abs(vy); }
+
+      const spd = Math.hypot(vx, vy);
+      if (spd > 4.5) { vx = vx / spd * 4.5; vy = vy / spd * 4.5; }
+
+      const sx    = vx < 0 ? -1 : 1;
+      const tilt  = fi === 1 ? (sx * -6) : (fi === 2 ? 2 : 0);
+      rabbit.style.transform = `scaleX(${sx}) rotate(${tilt}deg)`;
+      rabbit.style.left = rx + 'px';
+      rabbit.style.top  = (ry + bob) + 'px';
+
+      raf = requestAnimationFrame(tick);
+    }
+
+    raf = requestAnimationFrame(tick);
+
+    const SPARKS = ['♡','✦','★','✿','◇','˖','✪','꩜'];
+    const COLORS = ['#FF69B4','#FFD700','#87CEEB','#FF9F9F','#B4F0A0','#E0AAFF','#FFC0CB','#AEEEF0'];
+
+    rabbit.addEventListener('click', function (e) {
+      e.stopPropagation();
+      cancelAnimationFrame(raf);
+
+      const cx = rx + 48, cy = ry + 48;
+      for (let i = 0; i < 10; i++) {
+        const el = document.createElement('div');
+        el.className = 'sparkle';
+        el.textContent = SPARKS[i % SPARKS.length];
+        el.style.cssText = [
+          'left:'            + (cx + (Math.random() - .5) * 90) + 'px',
+          'top:'             + (cy + (Math.random() - .5) * 70) + 'px',
+          'color:'           + COLORS[i % COLORS.length],
+          'font-size:'       + (14 + Math.random() * 16) + 'px',
+          'animation-delay:' + (i * .04) + 's',
+        ].join(';');
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1100);
+      }
+
+      rabbit.classList.add('rabbit-pop');
+      setTimeout(() => { rabbit.style.display = 'none'; }, 500);
+    });
+
+  })();
+  </script>
 </body>
 </html>

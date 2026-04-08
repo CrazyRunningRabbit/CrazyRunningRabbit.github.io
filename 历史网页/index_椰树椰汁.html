@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>王敏达 | 正宗南洋理工大学</title>
+  <meta name="description" content="AI for Science · Topology Optimization · Computational Mechanics" />
+  <style>
+    :root {
+      --bg: #000000;
+      --yellow: #FFFF00;
+      --red: #FF0000;
+      --blue: #0000FF;
+      --white: #FFFFFF;
+      --border-thick: 6px solid #FFFF00;
+      --border-thin: 3px solid #FFFF00;
+    }
+
+    * { 
+      box-sizing: border-box; 
+      font-family: "黑体", SimHei, "Arial Black", sans-serif;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--yellow);
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    a { 
+      color: var(--yellow); 
+      text-decoration: none; 
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 20px));
+      margin: 0 auto;
+    }
+
+    /* 顶部导航 */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--bg);
+      border-bottom: var(--border-thick);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      font-size: 24px;
+      background: var(--red);
+      padding: 5px 15px;
+      border: var(--border-thin);
+      color: var(--yellow);
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a, .btn {
+      background: var(--red);
+      color: var(--yellow);
+      border: var(--border-thin);
+      padding: 10px 20px;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover, .btn:hover {
+      background: var(--yellow);
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    /* 头部区域 */
+    .hero {
+      padding: 60px 0;
+      border-bottom: var(--border-thick);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      padding: 10px 20px;
+      border: var(--border-thin);
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: clamp(50px, 8vw, 100px);
+      line-height: 1;
+      margin: 0 0 20px;
+      color: var(--yellow);
+      text-shadow: 4px 4px 0 var(--red);
+    }
+
+    .gradient {
+      background: var(--red);
+      color: var(--yellow);
+      padding: 0 10px;
+      border: var(--border-thick);
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .subtitle {
+      font-size: 24px;
+      background: var(--bg);
+      color: var(--yellow);
+      padding: 15px;
+      border: var(--border-thin);
+      margin: 0 0 30px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn.primary {
+      background: var(--yellow);
+      color: var(--red);
+      border: 4px solid var(--red);
+      font-size: 24px;
+      padding: 15px 30px;
+    }
+
+    /* 数据统计 */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat, .feature, .post, .timeline-item {
+      background: var(--bg);
+      border: var(--border-thick);
+      padding: 20px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 40px;
+      color: var(--red);
+      background: var(--yellow);
+      text-align: center;
+      margin-bottom: 10px;
+      border: var(--border-thin);
+    }
+
+    .stat span {
+      display: block;
+      font-size: 18px;
+      background: var(--red);
+      color: var(--yellow);
+      padding: 5px;
+      text-align: center;
+    }
+
+    /* 视觉元素区 */
+    .visual {
+      background: var(--blue);
+      border: var(--border-thick);
+      padding: 20px;
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .pill {
+      background: var(--yellow);
+      color: var(--red);
+      padding: 10px 20px;
+      border: 4px solid var(--red);
+      font-size: 24px;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    .floating-tag {
+      background: var(--red);
+      color: var(--yellow);
+      border: var(--border-thin);
+      padding: 10px 15px;
+      font-size: 20px;
+      margin: 10px;
+      display: inline-block;
+    }
+
+    /* 通用区块 */
+    section {
+      padding: 50px 0;
+      border-bottom: var(--border-thick);
+    }
+
+    .section-head h2 {
+      font-size: 50px;
+      background: var(--red);
+      color: var(--yellow);
+      display: inline-block;
+      padding: 10px 20px;
+      border: var(--border-thick);
+      margin: 0 0 20px;
+    }
+
+    .section-head p {
+      font-size: 20px;
+      border: var(--border-thin);
+      padding: 15px;
+      margin-bottom: 30px;
+    }
+
+    /* 特性区块 */
+    .features, .post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature .num {
+      display: inline-block;
+      font-size: 30px;
+      background: var(--yellow);
+      color: var(--red);
+      padding: 5px 15px;
+      border: var(--border-thin);
+      margin-bottom: 15px;
+    }
+
+    .feature h3, .post h3 {
+      font-size: 28px;
+      background: var(--red);
+      color: var(--yellow);
+      padding: 10px;
+      margin: 0 0 15px;
+      border: var(--border-thin);
+    }
+
+    .feature p, .post p, .timeline-item p {
+      font-size: 18px;
+    }
+
+    /* 博客区块 */
+    .post { display: flex; flex-direction: column; }
+    
+    .post .pill {
+      font-size: 16px;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+    }
+
+    .post a.more {
+      margin-top: auto;
+      background: var(--blue);
+      color: var(--white);
+      padding: 10px;
+      text-align: center;
+      border: var(--border-thin);
+      font-size: 20px;
+      display: block;
+    }
+
+    /* 路线图 */
+    .timeline { display: grid; gap: 20px; }
+    
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .timeline-item .date {
+      font-size: 30px;
+      background: var(--yellow);
+      color: var(--red);
+      padding: 10px;
+      text-align: center;
+      border: 4px solid var(--red);
+    }
+
+    .timeline-item h4 {
+      font-size: 26px;
+      background: var(--red);
+      color: var(--yellow);
+      padding: 5px 15px;
+      display: inline-block;
+      margin: 0 0 10px;
+    }
+
+    /* 底部 */
+    .footer {
+      padding: 40px 0;
+      background: var(--red);
+    }
+
+    .footer-box {
+      background: var(--bg);
+      border: var(--border-thick);
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-box strong {
+      font-size: 30px;
+      background: var(--yellow);
+      color: var(--red);
+      padding: 5px 15px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 980px) {
+      .hero-grid, .features, .post-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; text-align: center; }
+      .timeline-item .date { margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">我从小喝到大 · 纯正南洋好味道</div>
+      <div class="nav-links">
+        <a href="#work">研究方向</a>
+        <a href="#posts">随笔精选</a>
+        <a href="#roadmap">路线图</a>
+        <a href="https://github.com/CrazyRunningRabbit" target="_blank" rel="noreferrer">GITHUB</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">正宗 AI for Science！</div>
+        <h1 class="title">
+          敢承诺<br/>
+          <span class="gradient">不加香精的科研</span>
+        </h1>
+        <p class="subtitle">人不访问我，我不访问人，人若访问我，我必给您带来快乐或精神污染。</p>
+        <div class="actions">
+          <a class="btn primary" href="#posts">进入博客</a>
+          <a class="btn" href="#work">看研究主题</a>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <strong>01</strong>
+            <span>推导到代码</span>
+          </div>
+          <div class="stat">
+            <strong>02</strong>
+            <span>结构到可视化</span>
+          </div>
+          <div class="stat">
+            <strong>03</strong>
+            <span>想法到知识库</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual">
+        <!-- <div class="pill">正宗 LIVE RESEARCH CANVAS</div>
+        <div class="floating-tag">FEniCS(X)/ Firedrake</div>
+        <div class="floating-tag">RL & Design</div>
+        <div class="floating-tag">Want $$$$$$$$$$$</div> -->
+        <div class="section-head">
+        <h2>自我介绍</h2>
+        <p>大家好，我叫王敏达，新加坡南洋理工大学博士二年级，主要研究方向为柔性机器人拓扑优化。我擅长Fenics，FenicsX和Firedrake平台的各种求解和优化。我很喜欢打羽毛球，因为在打羽毛球的时候我的手高于我的眼睛，避免了眼高手低的问题。我有很强的ai背景，不会的东西都会问ai。</p>
+      </div>
+        <div class="post" style="margin-top: 20px; text-align: left; width: 100%;">
+          <span class="pill" style="font-size:16px;">强烈推荐 FEATURED</span>
+          <h3>多尺度设计 我从小算到大</h3>
+          <p style="background:var(--red); color:var(--yellow); padding:10px;">记录从小变形线弹性模型走向超弹性大变形、多物理场与参数化设计。</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="container">
+      
+
+      <div class="features">
+        <article class="feature">
+          <div class="num">01</div>
+          <h3>计算力学</h3>
+          <p>大到扇耳光的轰鸣，小到火星撞地球的轻微声响，我们都可以按需模拟出您的受力</p>
+        </article>
+        <article class="feature">
+          <div class="num">02</div>
+          <h3>优化</h3>
+          <p>这个世界上有多少可能出现的结构，一起爬山吧，蒙着眼睛算梯度那种。</p>
+        </article>
+        <article class="feature">
+          <div class="num">03</div>
+          <h3>AI FOR SCIENCE</h3>
+          <p>听说现在沾上了ai，以后卖薯条都可以被赋能</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="posts">
+    <div class="container">
+      <div class="section-head">
+        <h2>随笔精选</h2>
+        <p>这里应该有东西但为什么没有呢？？因为他善。想看扣1，扣到合适数量我就开始更新。</p>
+      </div>
+
+      <div class="post-grid">
+        <article class="post">
+          <span class="pill">TOPOLOGY OPTIMIZATION</span>
+          <h3>我画的饼1</h3>
+          <p>这里边有个超级妙的关于schur补的比喻，必看经典</p>
+          <a class="more" href="research/schur_complement.md">猛击此处开启成功人生</a>
+        </article>
+
+        <article class="post">
+          <span class="pill">FEM NOTES</span>
+          <h3>我画的饼2</h3>
+          <p>没时间写啊诸位</p>
+          <a class="more" href="#">猛击此处加功德</a>
+        </article>
+
+        <article class="post">
+          <span class="pill">AI FOR SCIENCE</span>
+          <h3>别人给我画的饼3</h3>
+          <p>我希望下周的升旗仪式我能去讲</p>
+          <a class="more" href="#">猛击此处敲醒我，我会同步收到提醒哦</a>
+        </article>
+
+
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="container">
+      <div class="section-head">
+        <h2>路线图</h2>
+        <p>科研路线图，广告位招租</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date">第一步</div>
+          <div>
+            <h4></h4>
+            <p>手上一堆markdown，到时候发一部分</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">第二步</div>
+          <div>
+            <h4>科研专题深挖</h4>
+            <p>等我把手上的三个工作做完我就整理</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">第三步</div>
+          <div>
+            <h4>独立域名与多内容承载</h4>
+            <p>这个域名好丑，我要买一个好一点的域名</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-box">
+      <div>
+        <strong>奔跑的兔子</strong>
+        <br/>
+        <span style="font-size:20px; background:var(--red); padding:5px;">我爱这个世界，钦此。</span>
+      </div>
+      <div class="nav-links">
+        <a href="mailto:your-email@example.com">发邮件给我 minda002 at e.ntu.edu.sg</a>
+        <a href="https://github.com/CrazyRunningRabbit" target="_blank" rel="noreferrer">看GITHUB</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
