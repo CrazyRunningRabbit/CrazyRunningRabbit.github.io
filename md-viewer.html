@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>正在加载...</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/tomorrow-night.min.css" />
+  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/tomorrow-night.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
   <style>
     :root {
       --bg:     #000000;
@@ -47,63 +47,32 @@
     }
     .page { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
 
-    /* ── 无参数时的输入界面 ── */
-    .no-file-box {
-      border: 6px solid var(--yellow);
-      padding: 36px 30px;
-      margin-top: 40px;
-    }
+    /* 无参数输入框 */
+    .no-file-box { border: 6px solid var(--yellow); padding: 36px 30px; margin-top: 40px; }
     .no-file-box h2 {
       font-size: 28px; background: var(--red); color: var(--yellow);
-      display: inline-block; padding: 8px 18px;
-      border: 4px solid var(--yellow); margin-bottom: 24px;
+      display: inline-block; padding: 8px 18px; border: 4px solid var(--yellow); margin-bottom: 24px;
     }
-    .no-file-box p {
-      font-size: 16px; color: #ccc; margin-bottom: 20px; font-weight: 400;
-      font-family: Arial, sans-serif; line-height: 1.7;
-    }
-    .no-file-box code {
-      background: #1a1a00; color: var(--yellow);
-      border: 2px solid #555500; padding: 2px 8px;
-      font-family: monospace; font-size: 0.9em;
-    }
-    .input-row {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px;
-    }
-    .path-input {
-      flex: 1; min-width: 200px;
-      background: #111; color: var(--yellow);
-      border: 4px solid var(--yellow); padding: 10px 14px;
-      font-size: 16px; font-family: monospace; font-weight: 700;
-      outline: none;
-    }
+    .no-file-box p { font-size: 16px; color: #ccc; margin-bottom: 20px; font-weight: 400; font-family: Arial, sans-serif; line-height: 1.7; }
+    .no-file-box code { background: #1a1a00; color: var(--yellow); border: 2px solid #555500; padding: 2px 8px; font-family: monospace; font-size: 0.9em; }
+    .input-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+    .path-input { flex: 1; min-width: 200px; background: #111; color: var(--yellow); border: 4px solid var(--yellow); padding: 10px 14px; font-size: 16px; font-family: monospace; font-weight: 700; outline: none; }
     .path-input:focus { border-color: var(--red); }
-    .go-btn {
-      background: var(--yellow); color: var(--red);
-      border: 4px solid var(--red); padding: 10px 24px;
-      font-size: 18px; font-weight: 900;
-      font-family: "黑体", SimHei, sans-serif;
-      cursor: pointer;
-    }
+    .go-btn { background: var(--yellow); color: var(--red); border: 4px solid var(--red); padding: 10px 24px; font-size: 18px; font-weight: 900; font-family: "黑体", SimHei, sans-serif; cursor: pointer; }
     .go-btn:hover { background: var(--red); color: var(--yellow); border-color: var(--yellow); }
-    .hint {
-      margin-top: 16px; font-size: 14px; color: #888;
-      font-family: Arial, sans-serif; font-weight: 400;
-    }
+    .hint { margin-top: 16px; font-size: 14px; color: #888; font-family: Arial, sans-serif; font-weight: 400; }
 
-    /* ── Markdown 正文 ── */
+    /* Markdown 正文 */
     .md-body { line-height: 1.8; font-weight: 400; font-family: "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
     .md-body h1 {
-      font-size: clamp(28px, 5vw, 48px); color: var(--yellow);
-      background: var(--red); padding: 14px 20px;
-      border: 6px solid var(--yellow); margin: 0 0 32px;
-      font-family: "黑体", SimHei, "Arial Black", sans-serif;
-      font-weight: 900; text-shadow: 3px 3px 0 #800000; line-height: 1.2;
+      font-size: clamp(28px, 5vw, 48px); color: var(--yellow); background: var(--red);
+      padding: 14px 20px; border: 6px solid var(--yellow); margin: 0 0 32px;
+      font-family: "黑体", SimHei, "Arial Black", sans-serif; font-weight: 900;
+      text-shadow: 3px 3px 0 #800000; line-height: 1.2;
     }
     .md-body h2 {
-      font-size: clamp(20px, 3.5vw, 32px); color: var(--yellow);
-      background: var(--blue); display: inline-block;
-      padding: 8px 18px; border: 4px solid var(--yellow); margin: 40px 0 18px;
+      font-size: clamp(20px, 3.5vw, 32px); color: var(--yellow); background: var(--blue);
+      display: inline-block; padding: 8px 18px; border: 4px solid var(--yellow); margin: 40px 0 18px;
       font-family: "黑体", SimHei, "Arial Black", sans-serif; font-weight: 900;
     }
     .md-body h3 {
@@ -112,38 +81,20 @@
       margin: 32px 0 14px; background: #111;
       font-family: "黑体", SimHei, "Arial Black", sans-serif; font-weight: 900;
     }
-    .md-body h4 {
-      font-size: 18px; color: var(--yellow);
-      border-bottom: 3px solid var(--yellow); padding-bottom: 4px;
-      margin: 24px 0 10px; font-weight: 700;
-    }
+    .md-body h4 { font-size: 18px; color: var(--yellow); border-bottom: 3px solid var(--yellow); padding-bottom: 4px; margin: 24px 0 10px; font-weight: 700; }
     .md-body p { font-size: 17px; color: #f0e0c0; margin: 0 0 18px; line-height: 1.9; }
     .md-body code:not(pre code) {
-      background: #1a1a00; color: var(--yellow);
-      border: 2px solid #555500; padding: 1px 7px;
-      font-family: "Fira Code", Consolas, monospace;
+      background: #1a1a00; color: var(--yellow); border: 2px solid #555500;
+      padding: 1px 7px; font-family: "Fira Code", Consolas, monospace;
       font-size: 0.88em; font-weight: 700; border-radius: 2px;
     }
     .md-body pre {
-      background: #0d0d0d; border: 4px solid var(--yellow);
-      border-left: 8px solid var(--red); padding: 20px 18px;
-      margin: 20px 0 28px; overflow-x: auto; position: relative;
+      background: #0d0d0d; border: 4px solid var(--yellow); border-left: 8px solid var(--red);
+      padding: 20px 18px; margin: 20px 0 28px; overflow-x: auto; position: relative;
     }
-    .md-body pre code {
-      font-family: "Fira Code", Consolas, monospace;
-      font-size: 14px; line-height: 1.7; color: #e8e8e8;
-      background: none; border: none; padding: 0; font-weight: 400;
-    }
-    .md-body pre::before {
-      content: attr(data-lang); position: absolute; top: 0; right: 0;
-      background: var(--red); color: var(--yellow);
-      font-size: 12px; font-weight: 900; padding: 2px 10px;
-      font-family: "黑体", SimHei, sans-serif; letter-spacing: 1px;
-    }
-    .md-body blockquote {
-      border-left: 8px solid var(--yellow); background: #111100;
-      margin: 20px 0; padding: 14px 20px; color: #cccc80; font-style: italic;
-    }
+    .md-body pre code { font-family: "Fira Code", Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e8e8e8; background: none; border: none; padding: 0; font-weight: 400; }
+    .md-body pre::before { content: attr(data-lang); position: absolute; top: 0; right: 0; background: var(--red); color: var(--yellow); font-size: 12px; font-weight: 900; padding: 2px 10px; font-family: "黑体", SimHei, sans-serif; letter-spacing: 1px; }
+    .md-body blockquote { border-left: 8px solid var(--yellow); background: #111100; margin: 20px 0; padding: 14px 20px; color: #cccc80; font-style: italic; }
     .md-body blockquote p { color: #cccc80; margin: 0; }
     .md-body ul, .md-body ol { padding-left: 26px; margin: 10px 0 18px; }
     .md-body li { font-size: 16px; color: #f0e0c0; margin-bottom: 8px; line-height: 1.7; }
@@ -151,11 +102,7 @@
     .md-body ol li::marker { color: var(--yellow); font-weight: 900; }
     .md-body table { width: 100%; border-collapse: collapse; margin: 20px 0 28px; font-size: 15px; }
     .md-body thead tr { background: var(--red); }
-    .md-body thead th {
-      color: var(--yellow); padding: 10px 14px;
-      border: 3px solid var(--yellow); text-align: left;
-      font-weight: 900; font-family: "黑体", SimHei, sans-serif;
-    }
+    .md-body thead th { color: var(--yellow); padding: 10px 14px; border: 3px solid var(--yellow); text-align: left; font-weight: 900; font-family: "黑体", SimHei, sans-serif; }
     .md-body tbody tr:nth-child(odd)  { background: #0a0a00; }
     .md-body tbody tr:nth-child(even) { background: #111108; }
     .md-body tbody tr:hover { background: #1a1a00; }
@@ -167,7 +114,12 @@
     .md-body strong { color: var(--yellow); font-weight: 900; }
     .md-body em     { color: #ffdd88; font-style: italic; }
 
-    /* ── 底部栏 ── */
+    /* KaTeX 公式颜色适配深色背景 */
+    .md-body .katex { color: #ffe066; font-size: 1.05em; }
+    .md-body .katex-display { margin: 24px 0; overflow-x: auto; }
+    .md-body .katex-display > .katex { color: #ffe066; }
+
+    /* 底部栏 */
     .back-bar {
       position: fixed; bottom: 0; left: 0; right: 0;
       background: var(--red); border-top: 4px solid var(--yellow);
@@ -175,11 +127,9 @@
       display: flex; justify-content: space-between; align-items: center; z-index: 30;
     }
     .back-btn {
-      background: var(--yellow); color: var(--red);
-      border: 3px solid var(--red); padding: 8px 22px;
-      font-size: 18px; font-weight: 900;
-      font-family: "黑体", SimHei, sans-serif;
-      cursor: pointer; text-decoration: none; display: inline-block;
+      background: var(--yellow); color: var(--red); border: 3px solid var(--red);
+      padding: 8px 22px; font-size: 18px; font-weight: 900;
+      font-family: "黑体", SimHei, sans-serif; cursor: pointer; text-decoration: none; display: inline-block;
     }
     .back-btn:hover { background: var(--bg); color: var(--yellow); border-color: var(--yellow); }
     .back-label { font-size: 14px; color: var(--yellow); letter-spacing: 1px; }
@@ -218,26 +168,20 @@
     const srcLabel  = document.getElementById('src-label');
     const rawLink   = document.getElementById('raw-link');
 
-    /* ── 没有 ?f= 参数：显示输入框 ── */
+    /* ── 无参数：显示输入框 ── */
     if (!filePath) {
       document.title = 'Markdown 阅读器 | 奔跑的兔子';
       contentEl.innerHTML = `
         <div class="no-file-box">
           <h2>📄 输入 MD 文件路径</h2>
-          <p>
-            正常情况下你应该从主页链接跳转过来，链接格式长这样：<br/>
-            <code>md-viewer.html?f=research/schur_complement.md</code>
-          </p>
-          <p>如果你是直接打开这个页面，在下面输入文件相对路径也行：</p>
+          <p>正常情况下从主页链接跳转过来，链接格式：<br/>
+             <code>md-viewer.html?f=research/schur_complement.md</code></p>
           <div class="input-row">
-            <input class="path-input" id="path-input"
-                   type="text" placeholder="research/schur_complement.md"
-                   value="" />
+            <input class="path-input" id="path-input" type="text" placeholder="research/schur_complement.md" />
             <button class="go-btn" id="go-btn">去看看</button>
           </div>
           <p class="hint">路径相对于网站根目录，不用加开头的 /</p>
         </div>`;
-
       document.getElementById('go-btn').addEventListener('click', function () {
         const val = document.getElementById('path-input').value.trim();
         if (val) location.href = 'md-viewer.html?f=' + encodeURIComponent(val);
@@ -248,46 +192,81 @@
       return;
     }
 
-    /* ── 有 ?f= 参数：正常加载 ── */
-    const fileName = decodeURIComponent(filePath).split('/').pop();
+    /* ── 有参数：加载并渲染 ── */
+    const decoded = decodeURIComponent(filePath);
+    const fileName = decoded.split('/').pop();
     navTitle.textContent = fileName;
     document.title = fileName + ' | 奔跑的兔子';
-    srcLabel.textContent = decodeURIComponent(filePath);
-    rawLink.href = decodeURIComponent(filePath);
+    srcLabel.textContent = decoded;
+    rawLink.href = decoded;
     rawLink.style.display = 'inline-block';
 
     marked.setOptions({ gfm: true, breaks: true, langPrefix: 'language-' });
 
-    fetch(decodeURIComponent(filePath))
+    fetch(decoded)
       .then(res => {
-        if (!res.ok) throw new Error(`HTTP ${res.status} — 文件不存在或路径有误`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.text();
       })
       .then(md => {
-        contentEl.innerHTML = `<div class="md-body">${marked.parse(md)}</div>`;
-        
+
+        /* ══════════════════════════════════════════════════
+           关键步骤：在 marked 处理之前，把所有数学公式
+           替换成占位符，防止 marked 破坏 LaTeX 语法，
+           渲染完 HTML 后再还原，最后交给 KaTeX。
+        ══════════════════════════════════════════════════ */
+        const mathStore = [];
+
+        function stash(tex) {
+          mathStore.push(tex);
+          return `\x02MATH${mathStore.length - 1}\x03`;
+        }
+
+        // 1. 先保护块级公式 $$ ... $$ （含换行）
+        let safe = md.replace(/\$\$([\s\S]+?)\$\$/g, (_, inner) =>
+          stash(`$$${inner}$$`)
+        );
+
+        // 2. 再保护行内公式 $ ... $（不含换行）
+        safe = safe.replace(/\$([^\n$`]+?)\$/g, (_, inner) =>
+          stash(`$${inner}$`)
+        );
+
+        // 3. marked 只处理干净的 Markdown
+        let html = marked.parse(safe);
+
+        // 4. 把占位符换回原始 LaTeX
+        html = html.replace(/\x02MATH(\d+)\x03/g, (_, i) => mathStore[+i]);
+
+        contentEl.innerHTML = `<div class="md-body">${html}</div>`;
+
+        // 5. KaTeX 渲染
         renderMathInElement(contentEl, {
           delimiters: [
-            { left: '$$',  right: '$$',  display: true  },   // 块级公式
-            { left: '$',   right: '$',   display: false },   // 行内公式
+            { left: '$$', right: '$$', display: true  },
+            { left: '$',  right: '$',  display: false },
             { left: '\\[', right: '\\]', display: true  },
             { left: '\\(', right: '\\)', display: false },
           ],
           throwOnError: false,
+          errorColor: '#ff6666',
         });
 
+        // 6. 更新标题
         const h1 = contentEl.querySelector('h1');
         if (h1) {
-          document.title  = h1.textContent + ' | 奔跑的兔子';
+          document.title = h1.textContent + ' | 奔跑的兔子';
           navTitle.textContent = h1.textContent;
         }
 
+        // 7. 代码高亮 + 语言标签
         contentEl.querySelectorAll('pre code').forEach(block => {
           hljs.highlightElement(block);
           const lang = (block.className.match(/language-(\w+)/) || [])[1] || '';
           if (lang) block.parentElement.setAttribute('data-lang', lang.toUpperCase());
         });
 
+        // 8. 外链新窗口
         contentEl.querySelectorAll('a[href]').forEach(a => {
           try {
             if (new URL(a.href).hostname !== location.hostname) {
@@ -301,12 +280,10 @@
           <div class="no-file-box" style="border-color:var(--red);">
             <h2 style="background:var(--bg);color:var(--red);border-color:var(--red);">❌ 加载失败</h2>
             <p style="color:var(--red);">${err.message}</p>
-            <p>文件路径: <code>${decodeURIComponent(filePath)}</code></p>
-            <p style="margin-top:16px;">可能的原因：</p>
-            <p>· 文件还没推送到仓库<br/>· 路径拼写有误（区分大小写）<br/>· GitHub Pages 还在部署中（等一分钟再试）</p>
+            <p>文件路径：<code>${decoded}</code></p>
+            <p style="margin-top:12px;">· 确认文件已推送到仓库<br/>· 路径区分大小写<br/>· GitHub Pages 部署需要约 1 分钟</p>
             <div class="input-row" style="margin-top:20px;">
-              <input class="path-input" id="path-input2" type="text"
-                     value="${decodeURIComponent(filePath)}" />
+              <input class="path-input" id="path-input2" type="text" value="${decoded}" />
               <button class="go-btn" id="go-btn2">重试</button>
             </div>
           </div>`;
